@@ -1,5 +1,4 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
+import React, { useState } from "react";
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
@@ -7,43 +6,59 @@ import EditIcon from "@mui/icons-material/Edit";
 import BookIcon from "@mui/icons-material/Book";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import DescriptionIcon from "@mui/icons-material/Description";
+import TagModal from "../Modals/TagModal";
+import NoteModal from "../Modals/NoteModal";
+import NoteBookModal from "../Modals/NoteBookModal";
+import { useNavigate } from "react-router-dom";
 
 export default function OpenIconSpeedDial() {
-  const openTag = () => {
-    console.log("tag");
-  }
-  const openNote = () => {
-    console.log("Note");
+  const navigate = useNavigate();
+
+  const [openTag, setTagOpen] = useState(false);
+  const [openNote, setNoteOpen] = useState(false);
+  const [openNoteBook, setNoteBookOpen] = useState(false);
+
+  const openTagHandler = () => {
+    setTagOpen(!openTag);
   };
-  const openNoteBook = () => {
-    console.log("NoteBook");
+  const openNoteHandler = () => {
+    setNoteOpen(!openNote);
+  };
+  const openNoteBookHandler = () => {
+    setNoteBookOpen(!openNoteBook);
   };
 
   return (
-    <SpeedDial
-      ariaLabel="Create Something"
-      sx={{ position: "absolute", bottom: 16, left: 8 }}
-      icon={<SpeedDialIcon openIcon={<EditIcon />} />}
-      direction="up"
-    >
-      <SpeedDialAction
-        key="New Tag"
-        icon={<LocalOfferIcon />}
-        tooltipTitle="New Tag"
-        onClick={openTag}
-      />
-      <SpeedDialAction
-        key="New Note"
-        icon={<DescriptionIcon />}
-        tooltipTitle="New Note"
-        onClick={openNote}
-      />
-      <SpeedDialAction
-        key="New NoteBook"
-        icon={<BookIcon />}
-        tooltipTitle="New NoteBook"
-        onClick={openNoteBook}
-      />
-    </SpeedDial>
+    <>
+      <SpeedDial
+        ariaLabel="Create Something"
+        sx={{ position: "absolute", bottom: 16, left: 8 }}
+        icon={<SpeedDialIcon openIcon={<EditIcon />} />}
+        direction="up"
+        onclick={() => {navigate("/playground")}}
+      >
+        <SpeedDialAction
+          key="New Tag"
+          icon={<LocalOfferIcon />}
+          tooltipTitle="New Tag"
+          onClick={openTagHandler}
+        />
+        <SpeedDialAction
+          key="New Note"
+          icon={<DescriptionIcon />}
+          tooltipTitle="New Note"
+          onClick={openNoteHandler}
+        />
+        <SpeedDialAction
+          key="New NoteBook"
+          icon={<BookIcon />}
+          tooltipTitle="New NoteBook"
+          onClick={openNoteBookHandler}
+        />
+      </SpeedDial>
+      <TagModal openTagHandler={openTagHandler} openTag={openTag}/>
+      <NoteModal openNoteHandler={openNoteHandler} openNote={openNote}/>
+      <NoteBookModal openNoteBookHandler={openNoteBookHandler} openNoteBook={openNoteBook}/>
+    </>
   );
 }

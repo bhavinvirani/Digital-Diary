@@ -3,16 +3,16 @@ import React from 'react'
 import Nav from '../components/Nav/Nav';
 import { DDState } from '../context/DDProvider';
 
-const Homepage = () => {
+const Notes = () => {
   const { user } = DDState();
 
   return (
     
     <Box sx={{ ml: 9.5, mt: 8.4, p: 2 }}>
     {user && <Nav />}
-    <div>Homepage</div>
+    <div>Notes</div>
   </Box>
   );
 }
 
-export default Homepage
+export default Notes

@@ -1,33 +1,31 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import Nav from "./components/Nav/Nav";
 import Homepage from "./pages/Homepage";
-import Write from "./pages/Write";
+import PlayGround from "./pages/PlayGround";
 import Auth from "./pages/Auth";
 import Alert from "./util/Alert";
 import { DDState } from "./context/DDProvider";
 import { Box } from "@material-ui/core";
-import Note from "./pages/Note";
+import DashBoard from "./pages/DashBoard";
+import Notes from "./pages/Notes";
+import NoteBooks from "./pages/NoteBooks";
 
 function App() {
-  const { pathname } = useLocation();
   const { user } = DDState();
-
 
   return (
     <>
-      {user && <Nav />}
-
-      <Box sx={{ ml: 9.5, mt: 8.4, p: 3 }}>
       <Routes>
         <Route path="/" element={<Auth />} exact />
         <Route path="/home" element={<Homepage />} exact />
-        <Route path="/write" element={<Write />} exact />
-        <Route path="/bote/:id" element={<Note />} />
+        <Route path="/playground" element={<PlayGround />} exact />
+        <Route path="/dashboaard" element={<DashBoard />} />
+        <Route path="/notes" element={<Notes />} />
+        <Route path="/notebooks" element={<NoteBooks />} />
       </Routes>
       <Alert />
-      </Box>
     </>
   );
 }

@@ -22,6 +22,8 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Collapse, ListItemButton, Tooltip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import SpeedDial from "../utils/SpeedDial";
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ModeIcon from '@mui/icons-material/Mode';
 
 const drawerWidth = 220;
 const openedMixin = (theme) => ({
@@ -95,12 +97,30 @@ const SideDrawer = ({ open, handleDrawerClose }) => {
       <Divider />
 
       <List dense>
+        <Tooltip title="Start Writing" placement="right">
+          <ListItemButton divider autoFocus onClick={() => navigate("/playground")}>
+            <ListItemIcon>
+              <ModeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItemButton>
+        </Tooltip>
+
         <Tooltip title="Home" placement="right">
           <ListItemButton onClick={() => navigate("/home")}>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
+          </ListItemButton>
+        </Tooltip>
+
+        <Tooltip title="Dashboard" placement="right">
+          <ListItemButton onClick={() => navigate("/dashboaard")}>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
           </ListItemButton>
         </Tooltip>
 
@@ -133,53 +153,51 @@ const SideDrawer = ({ open, handleDrawerClose }) => {
           </List>
         </Collapse>
 
+        
+      </List>
+
+      <Divider />
+
+      
+
+      <List>
         <Tooltip title="Notes" placement="right">
-          <ListItem button onClick={() => navigate("/write")}>
+          <ListItemButton  onClick={() => navigate("/notes")}>
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
             <ListItemText primary="Notes" />
-          </ListItem>
+          </ListItemButton>
         </Tooltip>
-
-        <Tooltip title="Drafts" placement="right">
-          <ListItem button>
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary="Drafts" />
-          </ListItem>
-        </Tooltip>
-      </List>
-      <Divider />
-      <List>
         <Tooltip title="Notebooks" placement="right">
-          <ListItem button>
+          <ListItemButton  onClick={() => navigate("/notebooks")}>
             <ListItemIcon>
               <BookIcon />
             </ListItemIcon>
             <ListItemText primary="Notebooks" />
-          </ListItem>
+          </ListItemButton>
         </Tooltip>
+
         <Tooltip title="Tags" placement="right">
-          <ListItem button onClick={() => navigate("")}>
+          <ListItemButton >
             <ListItemIcon>
               <LocalOfferIcon />
             </ListItemIcon>
             <ListItemText primary="Tags" />
-          </ListItem>
+          </ListItemButton>
         </Tooltip>
+
         <Tooltip title="Trash" placement="right">
-          <ListItem button onClick={() => navigate("/trash")}>
+          <ListItem button >
             <ListItemIcon>
               <DeleteIcon />
             </ListItemIcon>
             <ListItemText primary="Trash" />
           </ListItem>
         </Tooltip>
+
       </List>
       <SpeedDial />
-
     </Drawer>
   );
 };
