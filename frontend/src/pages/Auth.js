@@ -1,10 +1,4 @@
-import {
-  AppBar,
-  Container,
-  Tab,
-  Tabs,
-  Typography,
-} from "@mui/material";
+import { AppBar, Container, Tab, Tabs, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -31,7 +25,7 @@ const Auth = () => {
       <Container
         sx={{
           backgroundColor: "lightGray",
-          height: "100vh",
+          height: "120vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -75,7 +69,12 @@ const Auth = () => {
             <Box>
               <AppBar
                 position="static"
-                style={{ backgroundColor: "transparent", color: "white" }}
+                style={{
+                  backgroundColor: "skyBlue",
+                  color: "black",
+                  border: "1px solid gray",
+                  borderRadius: "6px",
+                }}
               >
                 <Tabs value={value} onChange={handleChange} variant="fullWidth">
                   <Tab label="Login" />
@@ -85,7 +84,14 @@ const Auth = () => {
               {value === 0 && <Login />}
               {value === 1 && <Signup />}
             </Box>
-            <Box style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+            <Box
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <span>OR</span>
               <GoogleButton
                 style={{
@@ -94,7 +100,7 @@ const Auth = () => {
                   borderRadius: 4,
                   padding: 4,
                   margin: 14,
-                  maxWidth: 600
+                  maxWidth: 600,
                 }}
                 // onClick={signInWithGoogle}
               />

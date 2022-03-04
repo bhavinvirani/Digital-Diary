@@ -140,7 +140,7 @@ const SideDrawer = ({ open, handleDrawerClose }) => {
               <ListItemIcon>
                 <StarBorderIcon />
               </ListItemIcon>
-              <ListItemText primary="Starred" />
+              <ListItemText primary="Book1" />
             </ListItemButton>
           </List>
           <List dense component="div" disablePadding>
@@ -148,7 +148,7 @@ const SideDrawer = ({ open, handleDrawerClose }) => {
               <ListItemIcon>
                 <StarBorderIcon />
               </ListItemIcon>
-              <ListItemText primary="Starred" />
+              <ListItemText primary="Book2" />
             </ListItemButton>
           </List>
         </Collapse>
@@ -166,7 +166,7 @@ const SideDrawer = ({ open, handleDrawerClose }) => {
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
-            <ListItemText primary="Notes" />
+            <ListItemText primary="Notes (4)" />
           </ListItemButton>
         </Tooltip>
         <Tooltip title="Notebooks" placement="right">
@@ -174,7 +174,7 @@ const SideDrawer = ({ open, handleDrawerClose }) => {
             <ListItemIcon>
               <BookIcon />
             </ListItemIcon>
-            <ListItemText primary="Notebooks" />
+            <ListItemText primary="Notebooks (1)" />
           </ListItemButton>
         </Tooltip>
 
@@ -192,7 +192,7 @@ const SideDrawer = ({ open, handleDrawerClose }) => {
             <ListItemIcon>
               <DeleteIcon />
             </ListItemIcon>
-            <ListItemText primary="Trash" />
+            <ListItemText primary="Trash (0)" />
           </ListItem>
         </Tooltip>
 

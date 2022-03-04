@@ -2,7 +2,6 @@ import { Backdrop, Box, Fade, Modal, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-
 const style = {
   position: "absolute",
   top: "50%",
@@ -37,7 +36,7 @@ const NoteBookModal = ({ openNoteBookHandler, openNoteBook }) => {
         <Fade in={openNoteBook}>
           <Box sx={style}>
             <Typography variant="h6">Create New NoteBook</Typography>
-            <Typography fontSize="6px">
+            <Typography variant="subtitle2">
               Notebooks are useful for grouping notes around a common topic.
               They can be private or shared.
             </Typography>

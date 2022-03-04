@@ -35,7 +35,7 @@ const NoteModal = ({openNoteHandler, openNote, children}) => {
        <Fade in={openNote}>
           <Box sx={style}>
             <Typography variant="h6">Create New Tag</Typography>
-            <Typography fontSize="6px">
+            <Typography variant="subtitle2">
               Tags let you add keywords to notes, making them easier to find and
               browse.
             </Typography>
@@ -43,7 +43,7 @@ const NoteModal = ({openNoteHandler, openNote, children}) => {
             <TextField
               width="100%"
               id="standard-basic"
-              label="Tag Name"
+              label="Note Name"
               variant="standard"
               fullWidth
               value={noteName}

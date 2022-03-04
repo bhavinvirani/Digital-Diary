@@ -24,7 +24,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import TimelineIcon from "@mui/icons-material/Timeline";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import SideDrawer from "./SideDrawer";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { DDState } from "../../context/DDProvider";
 
 const Search = styled("div")(({ theme }) => ({
@@ -92,8 +92,7 @@ export default function Nav() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
-  const { pathname } = useLocation();
-  const { user } = DDState();
+  const { user, setAlert } = DDState();
 
   useEffect(() => {
     if (!user) {
@@ -162,21 +161,37 @@ export default function Nav() {
             {user.user.points}
           </Typography>
           <Typography>
-            <WhatshotIcon sx={{ fontSize: 28, color: "orange" }} />{user.user.streaks} Days
+            <WhatshotIcon sx={{ fontSize: 28, color: "orange" }} />
+            {user.user.streaks} Days
           </Typography>
         </Box>
-        <MenuItem sx={{ width: "100%" }}>Your Servers</MenuItem>
+        <MenuItem
+          sx={{ width: "100%" }}
+          onClick={() => navigate("/dashboaard")}
+        >
+          Dashboard
+        </MenuItem>
         <MenuItem sx={{ width: "100%" }}>Account Settings</MenuItem>
-        <MenuItem sx={{ width: "100%" }} onClick={() => {
-          localStorage.removeItem("userInfo");
-          navigate("/")
-        }}>Logout</MenuItem>
+        <MenuItem
+          sx={{ width: "100%" }}
+          onClick={() => {
+            localStorage.removeItem("userInfo");
+            setAlert({
+              open: true,
+              message: "Successful Logout",
+              type: "success",
+            });
+            navigate("/");
+          }}
+        >
+          Logout
+        </MenuItem>
       </MenuList>
     </Menu>
   );
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex"}}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>

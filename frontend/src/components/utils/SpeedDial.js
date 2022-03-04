@@ -35,7 +35,7 @@ export default function OpenIconSpeedDial() {
         sx={{ position: "absolute", bottom: 16, left: 8 }}
         icon={<SpeedDialIcon openIcon={<EditIcon />} />}
         direction="up"
-        onclick={() => {navigate("/playground")}}
+        onClick={() => {navigate("/playground")}}
       >
         <SpeedDialAction
           key="New Tag"

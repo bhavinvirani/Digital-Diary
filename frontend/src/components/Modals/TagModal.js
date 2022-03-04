@@ -37,7 +37,7 @@ const TagModal = ({ openTagHandler, openTag }) => {
         <Fade in={openTag}>
           <Box sx={style}>
             <Typography variant="h6">Create New Tag</Typography>
-            <Typography fontSize="6px">
+            <Typography variant="subtitle2">
               Tags let you add keywords to notes, making them easier to find and
               browse.
             </Typography>

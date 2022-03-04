@@ -8,8 +8,8 @@ import { DDState } from "../../context/DDProvider";
 const Login = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [pwd, setPwd] = useState("");
+  const [email, setEmail] = useState("test@test.com");
+  const [pwd, setPwd] = useState("123");
   const { setAlert } = DDState();
 
   const handleSubmit = async () => {
@@ -45,11 +45,11 @@ const Login = () => {
       );
       // console.log(data);
 
-      setAlert({
-        open: true,
-        message: "Registration Successful",
-        type: "success",
-      });
+      // await setAlert({
+      //   open: true,
+      //   message: "Registration Successful",
+      //   type: "success",
+      // });
       localStorage.setItem("userInfo", JSON.stringify(data));
       navigate("/home");
     } catch (e) {

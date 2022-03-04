@@ -68,11 +68,11 @@ const Signup = () => {
       );
       // console.log(data);
 
-      setAlert({
-        open: true,
-        message: "Registration Successful",
-        type: "success",
-      });
+      // setAlert({
+      //   open: true,
+      //   message: "Registration Successful",
+      //   type: "success",
+      // });
       localStorage.setItem("userInfo", JSON.stringify(data));
         navigate("/home");
     } catch (error) {
