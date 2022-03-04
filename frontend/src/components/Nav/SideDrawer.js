@@ -20,6 +20,8 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Collapse, ListItemButton, Tooltip } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import SpeedDial from "../utils/SpeedDial";
 
 const drawerWidth = 220;
 const openedMixin = (theme) => ({
@@ -70,7 +72,8 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const SideDrawer = ({ open, handleDrawerClose }) => {
-  const [isListopen, setIsListopen] = useState(true);
+  const [isListopen, setIsListopen] = useState(false);
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setIsListopen(!isListopen);
@@ -93,12 +96,12 @@ const SideDrawer = ({ open, handleDrawerClose }) => {
 
       <List dense>
         <Tooltip title="Home" placement="right">
-          <ListItem button>
+          <ListItemButton onClick={() => navigate("/home")}>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
-          </ListItem>
+          </ListItemButton>
         </Tooltip>
 
         <Tooltip title="Shortcuts" placement="right">
@@ -131,7 +134,7 @@ const SideDrawer = ({ open, handleDrawerClose }) => {
         </Collapse>
 
         <Tooltip title="Notes" placement="right">
-          <ListItem button>
+          <ListItem button onClick={() => navigate("/write")}>
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
@@ -159,7 +162,7 @@ const SideDrawer = ({ open, handleDrawerClose }) => {
           </ListItem>
         </Tooltip>
         <Tooltip title="Tags" placement="right">
-          <ListItem button>
+          <ListItem button onClick={() => navigate("")}>
             <ListItemIcon>
               <LocalOfferIcon />
             </ListItemIcon>
@@ -167,7 +170,7 @@ const SideDrawer = ({ open, handleDrawerClose }) => {
           </ListItem>
         </Tooltip>
         <Tooltip title="Trash" placement="right">
-          <ListItem button>
+          <ListItem button onClick={() => navigate("/trash")}>
             <ListItemIcon>
               <DeleteIcon />
             </ListItemIcon>
@@ -175,6 +178,8 @@ const SideDrawer = ({ open, handleDrawerClose }) => {
           </ListItem>
         </Tooltip>
       </List>
+      <SpeedDial />
+
     </Drawer>
   );
 };

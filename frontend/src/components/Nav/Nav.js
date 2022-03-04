@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { styled, useTheme, alpha } from "@mui/material/styles";
+import React, { useEffect, useState } from "react";
+import { styled, alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -24,6 +24,8 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import TimelineIcon from "@mui/icons-material/Timeline";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import SideDrawer from "./SideDrawer";
+import { useLocation, useNavigate } from "react-router-dom";
+import { DDState } from "../../context/DDProvider";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -85,10 +87,19 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-export default function MiniDrawer() {
+export default function Nav() {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const { user } = DDState();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, []);
 
   const isMenuOpen = Boolean(anchorEl);
   const handleProfileMenuOpen = (event) => {
@@ -122,7 +133,6 @@ export default function MiniDrawer() {
       onClose={handleMenuClose}
     >
       <MenuList
-        alignItems={"center"}
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -132,11 +142,11 @@ export default function MiniDrawer() {
         }}
       >
         <Avatar
-          alt="Remy Sharp"
-          src="/static/images/avatar/2.jpg"
+          alt={user.user.name}
+          src={user.user.pic}
           sx={{ width: 166, height: 166, marginBottom: 1 }}
         />
-        <Typography>User Name</Typography>
+        <Typography>{user.user.name}</Typography>
         <Box
           sx={{
             display: "flex",
@@ -149,16 +159,18 @@ export default function MiniDrawer() {
         >
           <Typography>
             <TimelineIcon sx={{ fontSize: 28 }} />
-            1045
+            {user.user.points}
           </Typography>
           <Typography>
-            <WhatshotIcon sx={{ fontSize: 28, color: "orange" }} />7 Days
+            <WhatshotIcon sx={{ fontSize: 28, color: "orange" }} />{user.user.streaks} Days
           </Typography>
         </Box>
         <MenuItem sx={{ width: "100%" }}>Your Servers</MenuItem>
         <MenuItem sx={{ width: "100%" }}>Account Settings</MenuItem>
-        <MenuItem sx={{ width: "100%" }}>Logout</MenuItem>
-        {/* <MenuItem onClick={logoutHandler}>Logout</MenuItem> */}
+        <MenuItem sx={{ width: "100%" }} onClick={() => {
+          localStorage.removeItem("userInfo");
+          navigate("/")
+        }}>Logout</MenuItem>
       </MenuList>
     </Menu>
   );
@@ -199,6 +211,7 @@ export default function MiniDrawer() {
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
+
           <Box sx={{ display: { xs: "flex", md: "flex" } }}>
             <IconButton
               size="large"
@@ -211,7 +224,7 @@ export default function MiniDrawer() {
             </IconButton>
             <Tooltip title="account of current user">
               <IconButton onClick={handleProfileMenuOpen} sx={{ p: 1 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={user.user.name} src={user.user.pic} />
               </IconButton>
             </Tooltip>
           </Box>
